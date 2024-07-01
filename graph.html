@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Graph</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/viz.js@2.1.2-pre.1/viz.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/viz.js@2.1.2-pre.1/full.render.js"></script>
+  <script>
+const s = `
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] design-system#build" -> "[root] eslint-config#build"
+		"[root] design-system#build" -> "[root] prettier-config#build"
+		"[root] design-system#build" -> "[root] shared#build"
+		"[root] eslint-config#build" -> "[root] prettier-config#build"
+		"[root] prettier-config#build" -> "[root] ___ROOT___"
+		"[root] project-one#build" -> "[root] eslint-config#build"
+		"[root] project-one#build" -> "[root] prettier-config#build"
+		"[root] project-one#build" -> "[root] release-config#build"
+		"[root] project-one#build" -> "[root] shared#build"
+		"[root] project-one#build" -> "[root] stylelint-config#build"
+		"[root] project-two#build" -> "[root] eslint-config#build"
+		"[root] project-two#build" -> "[root] prettier-config#build"
+		"[root] project-two#build" -> "[root] release-config#build"
+		"[root] project-two#build" -> "[root] shared#build"
+		"[root] project-two#build" -> "[root] stylelint-config#build"
+		"[root] release-config#build" -> "[root] eslint-config#build"
+		"[root] release-config#build" -> "[root] prettier-config#build"
+		"[root] shared#build" -> "[root] ___ROOT___"
+		"[root] stylelint-config#build" -> "[root] eslint-config#build"
+		"[root] stylelint-config#build" -> "[root] prettier-config#build"
+	}
+}
+
+`.replace(/\_\_\_ROOT\_\_\_/g, "Root").replace(/\[root\]/g, "");new Viz().renderSVGElement(s).then(el => document.body.appendChild(el)).catch(e => console.error(e));
+  </script>
+</body>
+</html>

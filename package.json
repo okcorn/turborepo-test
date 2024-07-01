@@ -13,7 +13,9 @@
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
-    "release": "turbo release --concurrency=1"
+    "release": "turbo release --concurrency=1",
+    "graph": "turbo run build --graph=graph.html",
+    "profile": "turbo run build --profile=profile.html -vvv"
   },
   "keywords": "",
   "devDependencies": {
